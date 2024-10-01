@@ -8,8 +8,8 @@ class TaskAddScreen extends StatelessWidget with CustomWidgets {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _taskTitle = TextEditingController();
-    TextEditingController _taskDecription = TextEditingController();
+    TextEditingController taskTitle = TextEditingController();
+    TextEditingController taskDecription = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -37,11 +37,11 @@ class TaskAddScreen extends StatelessWidget with CustomWidgets {
         },
         child: Column(
           children: [
-            SizedBox(height: MediaQuery.of(context).size.width / 8),
+            SizedBox(height: MediaQuery.of(context).size.width / 12),
             customTextField(
-                context, "Eg: Learn Japanese", "Enter task title", _taskTitle),
+                context, "Eg: Learn Japanese", "Enter task title", taskTitle),
             customTextField(context, "Eg: Watch 3 videos of Japanese course",
-                "Enter task description", _taskDecription),
+                "Enter task description", taskDecription),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
