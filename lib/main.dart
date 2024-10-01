@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice46_realtime_database/screens/home.dart';
+import 'package:flutter_practice46_realtime_database/screens/task_add.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       home: const HomeScreen(),
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
+        TaskAddScreen.id: (context) => TaskAddScreen()
       },
     );
   }

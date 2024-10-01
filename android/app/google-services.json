@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "190811226758",
+    "project_id": "real-time-database-pactice",
+    "storage_bucket": "real-time-database-pactice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190811226758:android:828633c447c0976c8bc707",
+        "android_client_info": {
+          "package_name": "com.example.flutter_practice46_realtime_database"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtPRk0Z8mAG2r_4Pkj63UtYWz-rhMugJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
