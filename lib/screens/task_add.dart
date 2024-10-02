@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice46_realtime_database/config/widgets.dart';
+import 'package:flutter_practice46_realtime_database/screens/home.dart';
+import 'package:flutter_practice46_realtime_database/services/CRUD_real_tim_data.dart';
 
-class TaskAddScreen extends StatelessWidget with CustomWidgets {
+class TaskAddScreen extends StatefulWidget {
   static const String id = "/task_add_screen";
 
-  TaskAddScreen({super.key});
+  const TaskAddScreen({super.key});
+
+  @override
+  State<TaskAddScreen> createState() => _TaskAddScreenState();
+}
+
+class _TaskAddScreenState extends State<TaskAddScreen> with CustomWidgets {
+  TextEditingController taskTitle = TextEditingController();
+  TextEditingController taskDecription = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.requestFocus();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController taskTitle = TextEditingController();
-    TextEditingController taskDecription = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -32,6 +47,7 @@ class TaskAddScreen extends StatelessWidget with CustomWidgets {
         foregroundColor: Colors.white,
       ),
       body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: () {
           FocusScope.of(context).unfocus();
         },
@@ -39,7 +55,8 @@ class TaskAddScreen extends StatelessWidget with CustomWidgets {
           children: [
             SizedBox(height: MediaQuery.of(context).size.width / 12),
             customTextField(
-                context, "Eg: Learn Japanese", "Enter task title", taskTitle),
+                context, "Eg: Learn Japanese", "Enter task title", taskTitle,
+                focusNode: _focusNode),
             customTextField(context, "Eg: Watch 3 videos of Japanese course",
                 "Enter task description", taskDecription),
             Padding(
@@ -54,7 +71,34 @@ class TaskAddScreen extends StatelessWidget with CustomWidgets {
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(7)),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          DateTime currentDate = DateTime.now();
+                          String pmOrAm = "";
+                          if (currentDate.hour > 12) {
+                            pmOrAm = "PM";
+                          } else {
+                            pmOrAm = "AM";
+                          }
+                          if (taskTitle.text.trim().isNotEmpty &&
+                              taskDecription.text.trim().isNotEmpty) {
+                            CRUDRealTimData.createTask(
+                                currentDate.millisecondsSinceEpoch.toString(), {
+                              "taskTitle": taskTitle.text.trim(),
+                              "taskDecription": taskDecription.text.trim(),
+                              "time": currentDate.hour.toString(),
+                              "timeAmOrPm": pmOrAm,
+                              "id": currentDate.millisecondsSinceEpoch.toString(),
+                            });
+                            taskTitle.clear();
+                            taskDecription.clear();
+                            Navigator.pushReplacementNamed(
+                                context, HomeScreen.id);
+                          } else {
+                            taskTitle.clear();
+                            taskDecription.clear();
+                          }
+                          FocusScope.of(context).unfocus();
+                        },
                         child: Text("Add",
                             style: TextStyle(
                                 color: Colors.white,

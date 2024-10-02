@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 mixin CustomWidgets {
   // Custom TextField that helps to get properties of the task.
   Widget customTextField(BuildContext context, String hint, String label,
-      TextEditingController controller) {
+      TextEditingController controller, {FocusNode? focusNode}) {
     return Container(
       width: double.infinity,
       alignment: Alignment.center,
@@ -20,6 +20,8 @@ mixin CustomWidgets {
                 offset: const Offset(0, 0)),
           ]),
       child: TextField(
+        autofocus: true,
+        focusNode: focusNode,
         style: TextStyle(
             decoration: TextDecoration.none,
             decorationThickness: 0,
