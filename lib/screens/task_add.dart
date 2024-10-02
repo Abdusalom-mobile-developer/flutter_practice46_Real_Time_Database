@@ -33,7 +33,7 @@ class _TaskAddScreenState extends State<TaskAddScreen> with CustomWidgets {
         centerTitle: true,
         leading: GestureDetector(
           onTap: () {
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, HomeScreen.id);
           },
           child: Icon(
             Icons.arrow_back_ios_new_rounded,
